@@ -1,0 +1,69 @@
+﻿@model IEnumerable<Market.Models.Product>
+
+@{
+    ViewBag.Title = "GetAllProducts";
+}
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">GetAllProducts</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+        </ul>
+    </div>
+</nav>
+
+<p>
+    @Html.ActionLink("Create New", "AddProduct", null, htmlAttributes: new { @class = "btn btn-outline-success" })       |       @Html.ActionLink("Home", "Index", "Home", null, htmlAttributes: new { @class = "btn btn-outline-secondary" })
+</p>
+
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pkgd)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Exp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pkgd)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Exp)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditProduct", new { id = item.ProductId }, htmlAttributes: new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Details", "ViewPro", new { id = item.ProductId }, htmlAttributes: new { @class = "btn btn-info" }) |
+            @Html.ActionLink("Delete", "DeleteProduct", new { id = item.ProductId }, new { onclick = "return confirm('Confirm Delete?');", @class = "btn btn-danger" })
+
+        </td>
+    </tr>
+}
+
+</table>
